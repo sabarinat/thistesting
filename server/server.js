@@ -87,17 +87,18 @@ app.use('use', (req, res) => {
 
 // }
 });
-app.use('', (req, res) => {
-  console.log("dddddd")
-   res.send("hellow");
-})
+// app.use('', (req, res) => {
+//   console.log("dddddd")
+//    res.json({data:"hellow"});
+// })
 
-createConnection(datasource).then(() => {
+// createConnection(datasource).then(() => {
 app.listen(process.env.PORT, (err) => {
   if (err) { console.log(err); };
-  console.log('Listening on port ' + port);
-})}).catch((e) => {
-  console.log("this is not connect"+ e);
-})
+  console.log('http://localhost:' + port);
+});
+// })}).catch((e) => {
+//   console.log("this is not connect"+ e);
+// })
   
 
