@@ -45,7 +45,7 @@ module.exports = {
       body:
       {
         "from": "amdTelecom",
-        "to": "+91 7008019080",
+        "to": "+91 ",
         "body": "Hi Ranjith,sabari please wake up"
       },
       json: true

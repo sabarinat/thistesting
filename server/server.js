@@ -1,7 +1,7 @@
 //const express = require('express');
 require("reflect-metadata");
 //const app = express();
-const port = 5000;
+const port = process.env.PORT | 5001;
 const service = require("../server/service/clientService");
 const config = require("./config")
 require('dotenv').config();
@@ -9,6 +9,7 @@ const {createConnection} = require('typeorm');
 const datasource = require('./ormconfig')
 
 const app = require('./index');
+const { send } = require("express/lib/response");
 
 
 // app.use(express.urlencoded({ extended: true }));
@@ -18,12 +19,12 @@ const app = require('./index');
 
 var count = 0;
 var test = 0;
-sendMail();
+//sendMail();
 setTimeout(() => {
    console.log("-----------------------ss");
    test = 10000;
 }, 1000);
-process.nextTick(() => console.log("testt"+test));
+
 test = 20;
 function sendMail() {
   count = count + 1;
@@ -60,30 +61,41 @@ function sendMail() {
 //   }
 // });
 // set the interval for  call the send sms API for every 10 mins check the count of message if reach the limit it stop the the send sms process
-let time = setInterval(()=>{
+app.use('use', (req, res) => {
+
+
+   res.send("hello world");
+// let time = setInterval(()=>{
  
-  if(count === 10){
+//   if(count === 10){
 
-   stopTimer();
+//    stopTimer();
+   
 
-  } else {
+//   } else {
 
-    sendMail();
+//     sendMail();
 
-  }
-}, 1000*60*2);
+//   }
+//   res.send("hello");
+// }, 1000*60*2);
 
 //sop the interval
-function stopTimer() {
+// function stopTimer() {
 
- clearInterval(time);
+//  clearInterval(time);
 
-}
+// }
+});
+app.use('', (req, res) => {
+  console.log("dddddd")
+   res.send("hellow");
+})
 
 createConnection(datasource).then(() => {
 app.listen(process.env.PORT, (err) => {
   if (err) { console.log(err); };
-  console.log('Listening on port ' + process.env.PORT);
+  console.log('Listening on port ' + port);
 })}).catch((e) => {
   console.log("this is not connect"+ e);
 })
